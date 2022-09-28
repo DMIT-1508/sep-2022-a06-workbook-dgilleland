@@ -42,7 +42,7 @@ After performing Zero-Normal Form, a single entity was identified: **Customer**
 
 ### ERD
 
-> Coming soon (using LucidChart.com)
+![ERD](./Images/ESP-CustomerView.png)
 
 ----
 
