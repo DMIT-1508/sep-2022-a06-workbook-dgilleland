@@ -88,7 +88,9 @@ After performing Third-Normal Form, another new entity was identified: **Custome
 
 **Customer:** <span class="md"><b class="pk">CustomerNumber</b>, FirstName, LastName, Address, City, Province, PostalCode, Phone</span>
 
+### ERD
 
+![Customer Orders View](./Images/ESP-CustomerOrderView.png)
 
 ----
 
