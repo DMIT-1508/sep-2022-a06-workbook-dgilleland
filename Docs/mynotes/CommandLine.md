@@ -27,8 +27,6 @@ These are regular commands you do daily.
   - To just take all your changes from the current path on down, you can type `git add .` where the dot (`.`) means the "current path".
 - `git commit -m "Your Message"`
 
+## GitHub CLI
 
-
-
-
-
+- `gh browse` - open up the current repository's remote in your browser
