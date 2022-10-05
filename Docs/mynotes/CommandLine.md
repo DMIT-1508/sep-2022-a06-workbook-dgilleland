@@ -12,8 +12,8 @@
 Some commands you do infrequently.
 
 - First-time setup of "who you are"
-  - `git config user.name "Your Name"`
-  - `git config user.email "YourGitHubUserName@users.noreply.github.com"`
+  - `git config --global user.name "Your Name"`
+  - `git config --global user.email "YourGitHubUserName@users.noreply.github.com"`
 - Cloning a repository
   - `git clone <pathToGitHubRepo>`
   - Be sure your path on the command line is where you want to be. e.g.: **C://Users/WhoYouAre/Documents/GH**
