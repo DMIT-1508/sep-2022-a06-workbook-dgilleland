@@ -54,7 +54,9 @@ CREATE TABLE Students
 
 CREATE TABLE Courses
 (
-    [Number]        varchar(10)     NOT NULL,
+    [Number]        varchar(10)
+        CONSTRAINT PK_Courses_Number PRIMARY KEY
+                                    NOT NULL,
     [Name]          varchar(50)     NOT NULL,
     [Credits]       decimal(3, 1)   NOT NULL,
     [Hours]         tinyint         NOT NULL,
@@ -69,5 +71,9 @@ CREATE TABLE StudentCourses
     [Year]          int             NOT NULL,
     [Term]          char(3)         NOT NULL,
     [FinalMark]     tinyint             NULL,
-    [Status]        char(1)         NOT NULL
+    [Status]        char(1)         NOT NULL,
+    -- Table-Level Constraint - when a constraint involves more than one column
+    CONSTRAINT PK_StudentCourses_StudentID_CourseNumber
+        PRIMARY KEY (StudentID, CourseNumber)
+        -- Composite Primary Key Constraint
 )
