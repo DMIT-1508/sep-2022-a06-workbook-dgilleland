@@ -19,10 +19,13 @@ GO
 USE [SchoolTranscript] -- remaining SQL statements will run against the SchoolTranscript database
 GO
 
+DROP TABLE IF EXISTS StudentCourses
+DROP TABLE IF EXISTS Courses
+DROP TABLE IF EXISTS Students
+GO
 -- Create Tables...
 -- The CREATE TABLE statement contains a comma-separated list
 -- of column declarations
--- DROP TABLE Students
 CREATE TABLE Students
 (
     [StudentID]       int,
