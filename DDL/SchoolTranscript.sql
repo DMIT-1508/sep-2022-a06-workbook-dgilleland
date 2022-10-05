@@ -35,6 +35,16 @@ CREATE TABLE Students
     [StudentID]       int
         CONSTRAINT PK_Students_StudentID PRIMARY KEY
         -- A PRIMARY KEY constraint prevents duplicate data
+            IDENTITY (2000, 5)
+            -- The IDENTITY constraint does not need a name.
+            -- An IDENTITY constraint means that the database server
+            -- will take responsibility to put a value in this column
+            -- every time a new row is added to the table.
+            -- IDENTITY constraints can only be applied to the PRIMARY KEY
+            -- columns that are of a whole-number numeric type.
+            -- The IDENTITY constraint takes two values
+            --      - The "seed" or starting value for the first row
+            --      - The "increment" or value by which we increment
                                     NOT NULL,
     [GivenName]       varchar(50)   NOT NULL,
     [Surname]         varchar(50)   NOT NULL,
