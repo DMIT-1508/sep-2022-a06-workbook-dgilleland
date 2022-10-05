@@ -28,29 +28,29 @@ GO
 -- of column declarations
 CREATE TABLE Students
 (
-    [StudentID]       int,
-    [GivenName]       varchar(50),
-    [Surname]         varchar(50),
-    [DateOfBirth]     datetime,
-    [Enrolled]        bit
+    [StudentID]       int           NOT NULL,
+    [GivenName]       varchar(50)   NOT NULL,
+    [Surname]         varchar(50)   NOT NULL,
+    [DateOfBirth]     datetime      NOT NULL,
+    [Enrolled]        bit           NOT NULL
 )
 
 CREATE TABLE Courses
 (
-    [Number]        varchar(10),
-    [Name]          varchar(50),
-    [Credits]       decimal(3, 1),
-    [Hours]         tinyint,
-    [Active]        bit,
-    [Cost]          money
+    [Number]        varchar(10)     NOT NULL,
+    [Name]          varchar(50)     NOT NULL,
+    [Credits]       decimal(3, 1)   NOT NULL,
+    [Hours]         tinyint         NOT NULL,
+    [Active]        bit             NOT NULL,
+    [Cost]          money           NOT NULL
 )
 
 CREATE TABLE StudentCourses
 (
-    [StudentID]     int,
-    [CourseNumber]  varchar(10),
-    [Year]          int,
-    [Term]          char(3),
-    [FinalMark]     tinyint,
-    [Status]        char(1)
+    [StudentID]     int             NOT NULL,
+    [CourseNumber]  varchar(10)     NOT NULL,
+    [Year]          int             NOT NULL,
+    [Term]          char(3)         NOT NULL,
+    [FinalMark]     tinyint             NULL,
+    [Status]        char(1)         NOT NULL
 )
