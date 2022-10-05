@@ -28,7 +28,14 @@ GO
 -- of column declarations
 CREATE TABLE Students
 (
-    [StudentID]       int           NOT NULL,
+    -- Our column definitions will describe the
+    -- name of the column and its data type as well as
+    -- any "constraints" or "restrictions" around the
+    -- data that can be stored in that column
+    [StudentID]       int
+        CONSTRAINT PK_Students_StudentID PRIMARY KEY
+        -- A PRIMARY KEY constraint prevents duplicate data
+                                    NOT NULL,
     [GivenName]       varchar(50)   NOT NULL,
     [Surname]         varchar(50)   NOT NULL,
     [DateOfBirth]     datetime      NOT NULL,
