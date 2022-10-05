@@ -80,9 +80,18 @@ CREATE TABLE StudentCourses
         CONSTRAINT FK_StudentCourses_Courses -- All constraint names must be unique
             FOREIGN KEY REFERENCES Courses([Number])
                                     NOT NULL,
-    [Year]          int             NOT NULL,
+    [Year]          int
+        CONSTRAINT CK_StudentCourses_Year
+            CHECK ([Year] > 2010)
+            --     NOT [Year] <= 2010
+                                    NOT NULL,
     [Term]          char(3)         NOT NULL,
-    [FinalMark]     tinyint             NULL,
+    [FinalMark]     tinyint
+        CONSTRAINT CK_StudentCourses_FinalMark
+            CHECK (FinalMark BETWEEN 0 AND 100)
+            --     FinalMark >= 0 AND FinalMark <= 100
+            -- NOT(FinalMark <  0 OR  FinalMark >  100)    
+                                        NULL,
     [Status]        char(1)         NOT NULL,
     -- Table-Level Constraint - when a constraint involves more than one column
     CONSTRAINT PK_StudentCourses_StudentID_CourseNumber
