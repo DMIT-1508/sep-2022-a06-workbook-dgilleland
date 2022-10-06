@@ -56,12 +56,26 @@ CREATE TABLE Courses
 (
     [Number]        varchar(10)
         CONSTRAINT PK_Courses_Number PRIMARY KEY
+        CONSTRAINT CK_Courses_Number
+            CHECK ([Number] LIKE '[A-Z][A-Z][A-Z][A-Z]-[0-9][0-9][0-9][0-9]')                                                                                                                  
                                     NOT NULL,
     [Name]          varchar(50)     NOT NULL,
-    [Credits]       decimal(3, 1)   NOT NULL,
-    [Hours]         tinyint         NOT NULL,
+    [Credits]       decimal(3, 1)
+        CONSTRAINT CK_Courses_Credits
+            CHECK (Credits IN (3, 4.5, 6))
+                                    NOT NULL,
+    [Hours]         tinyint
+        CONSTRAINT CK_Courses_Hours
+            CHECK ([Hours] = 60 OR [Hours] = 90 OR [Hours] = 120)
+            --     [Hours] IN (60, 90, 120)
+                                    NOT NULL,
     [Active]        bit             NOT NULL,
-    [Cost]          money           NOT NULL
+    [Cost]          money
+        CONSTRAINT CK_Courses_Money
+            CHECK (Cost BETWEEN 400.00 AND 1500.00)
+        -- A CHECK constraint will ensure that the value passed in
+        -- meets the requirements of the constraint.
+                                    NOT NULL
 )
 
 CREATE TABLE StudentCourses
@@ -92,7 +106,13 @@ CREATE TABLE StudentCourses
             --     FinalMark >= 0 AND FinalMark <= 100
             -- NOT(FinalMark <  0 OR  FinalMark >  100)    
                                         NULL,
-    [Status]        char(1)         NOT NULL,
+    [Status]        char(1)
+        CONSTRAINT CK_StudentCourses_Status
+            -- The acceptable values for this column are 'A', 'W', and 'E'
+            CHECK ([Status] LIKE '[AWE]') -- A pattern-matching approach
+            --     [Status] = 'A' OR [Status] = 'E' OR [Status] = 'W'
+            --     [Status] IN ('A','W','E')
+                                    NOT NULL,
     -- Table-Level Constraint - when a constraint involves more than one column
     CONSTRAINT PK_StudentCourses_StudentID_CourseNumber
         PRIMARY KEY (StudentID, CourseNumber)
