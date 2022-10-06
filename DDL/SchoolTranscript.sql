@@ -46,10 +46,23 @@ CREATE TABLE Students
             --      - The "seed" or starting value for the first row
             --      - The "increment" or value by which we increment
                                     NOT NULL,
-    [GivenName]       varchar(50)   NOT NULL,
-    [Surname]         varchar(50)   NOT NULL,
+    [GivenName]       varchar(50)
+        CONSTRAINT CK_Students_GivenName
+            CHECK (GivenName LIKE '[A-Z][A-Z]%')
+            -- Matches 'Dan' or 'Danny' or 'Jo'
+                                    NOT NULL,
+    [Surname]         varchar(50)
+        CONSTRAINT CK_Students_Surname
+            CHECK (Surname LIKE '__%') -- Not as good as [A-Z][A-Z]%
+                                       -- Silly matches: 42
+                                    NOT NULL,
     [DateOfBirth]     datetime      NOT NULL,
-    [Enrolled]        bit           NOT NULL
+    [Enrolled]        bit -- Holds values of either 1 or 0
+        CONSTRAINT DF_Students_Enrolled
+            DEFAULT (1)
+        -- A DEFAULT constraint means that if no data is supplied
+        -- for this column, it will automatically use the default.
+                                    NOT NULL
 )
 
 CREATE TABLE Courses
@@ -71,11 +84,24 @@ CREATE TABLE Courses
                                     NOT NULL,
     [Active]        bit             NOT NULL,
     [Cost]          money
-        CONSTRAINT CK_Courses_Money
+        CONSTRAINT CK_Courses_Cost
             CHECK (Cost BETWEEN 400.00 AND 1500.00)
         -- A CHECK constraint will ensure that the value passed in
         -- meets the requirements of the constraint.
-                                    NOT NULL
+                                    NOT NULL,
+    -- Table-Level constraints are used for anything involving more than
+    -- one column, such as Composite Primary Keys or complex CHECK constraints.
+    -- It's a good pattern to put table-level constraint AFTER you have done all the
+    -- column definitions.
+    CONSTRAINT CK_Courses_Credits_Hours
+        CHECK ([Hours] IN (60, 90) AND Credits IN (3, 4.5) OR [Hours] = 120 AND Credits = 6)
+        --     \       #1 T/F    /
+        --                             \       #2  T/F   /
+        --             \            #3 T/F      /
+        --                                                    \      #4   /
+        --                                                                      \     #5  /
+        --                                                           \       #6        /
+        --                          \                     #7                  /
 )
 
 CREATE TABLE StudentCourses
@@ -118,3 +144,5 @@ CREATE TABLE StudentCourses
         PRIMARY KEY (StudentID, CourseNumber)
         -- Composite Primary Key Constraint
 )
+
+GO
