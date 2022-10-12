@@ -212,6 +212,14 @@ SELECT * FROM Students
 */
 
 
+-- Here's another change request: The Students.Email column is too short.
+-- sp_help Students
+-- Alter the table to allow up to 90 characters in length
+ALTER TABLE Students
+    ALTER COLUMN   Email       varchar(90)     NULL
+-- sp_help Students
+GO -- Another "batch" for the latest change request
+
 -- If you mistakenly added a column to a table, like this:
 ALTER TABLE Students -- Oops
     ADD     FinalGrade  int     NULL
@@ -221,4 +229,41 @@ ALTER TABLE Students -- Oops
     DROP COLUMN    FinalGrade
 GO
 
+/* ALTER TABLE Statements - PRACTICE */
+
+-- A) Add column to the Courses table called "SyllabusURL" that is a variable-length
+--    string of up to 70 characters. Determine for yourself if it should be NULL or NOT NULL.
+ALTER TABLE Courses
+    ADD SyllabusURL varchar(70) NULL
+/* After you add the column, here's some test data to insert into the database
+SELECT * FROM Courses
+INSERT INTO Courses(Number, Name, Credits, Hours, Active, Cost, SyllabusURL)
+VALUES ('HACK-0001', 'White-Hat Hacking', 4.5, 90, 1, 450.00, 'gopher://hack.dev')
+*/ 
+GO
+
+-- B) Add a CHECK constraint to the SyllabusURL that will ensure the value matches a website URL (HTTPS://).
+ALTER TABLE Courses
+        WITH NOCHECK
+    --  WITH NOCHECK means it will not apply the CHECK
+    --               to the existing data in the table
+    ADD CONSTRAINT CK_Courses_SyllabusURL
+        CHECK (SyllabusURL LIKE 'https://%')
+        --      Match for       'https://DMIT-1508.github.io'
+/*
+INSERT INTO Courses(Number, Name, Credits, Hours, Active, Cost, SyllabusURL)
+VALUES ('HACK-1705', 'Gray-Hat Hacking', 4.5, 90, 1, 450.00, 'https://hack.dev')
+INSERT INTO Courses(Number, Name, Credits, Hours, Active, Cost, SyllabusURL)
+VALUES ('SHIP-1705', 'Warp Drive Engineering', 4.5, 90, 1, 450.00, 'https://ST.Earth.UFP')
+*/
+
+-- C) One of the functions that we can use in SQL is the GETDATE() function that will 
+--    return the current datetime. Use this GETDATE() function as the default value
+--    for new column in Students called "EnrolledDate".
+ALTER TABLE Students
+    ADD EnrolledDate    datetime    NOT NULL
+        CONSTRAINT DF_Students_EnrolledDate
+            DEFAULT (GETDATE())
+
+GO -- end the batch of statements that alter the database
 
