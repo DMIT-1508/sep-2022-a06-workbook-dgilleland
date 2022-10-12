@@ -150,3 +150,75 @@ GO -- End of CREATE TABLE statements
 
 
 
+/* Editing Table Structure AFTER data exists
+SELECT  StudentID, GivenName, Surname, DateOfBirth, Enrolled
+FROM    Students
+SELECT [Number], [Name], Credits, [Hours], Active, Cost
+FROM   Courses
+SELECT StudentID, CourseNumber, [Year], Term, [Status]
+FROM   StudentCourses
+*/
+-- Modifying Database Table Schemas with ALTER TABLE
+
+-- Consider the fact that there may be data in the table
+-- that you are trying to alter.
+-- If you don't have a default value to apply when
+-- adding your new column, then the new column should
+-- allow NULL values.
+
+-- Here is an example where we add an extra column to the
+-- Students table for the student's home email.
+ALTER TABLE Students
+   ADD  Email   varchar(30)     NULL
+
+/*
+-- Here's a quck'n'dirty way to see all the column in a table
+SELECT * FROM Students
+*/
+
+-- New requirement: We need a column called "Paid" on
+-- the StudentCourses table. This has to be a Required
+-- column (NOT NULL).
+-- We need a DEFAULT value for existing rows of data.
+ALTER TABLE StudentCourses
+    ADD     Paid    bit     NOT NULL
+        CONSTRAINT DF_StudentCourses_Paid DEFAULT (0)
+
+-- SELECT * FROM StudentCourses
+-- sp_help StudentCourses
+
+-- Practice: Alter the StudentCourses table
+-- to add a column "OverDue" as a bit. (Optional)
+ALTER TABLE StudentCourses
+    ADD     OverDue     bit     NULL
+GO -- end of this ALTER TABLE batch, but there's more to come!
+
+-- New change request: Have a default for the
+-- "OverDue" column: 0
+ALTER TABLE StudentCourses
+    ADD CONSTRAINT DF_StudentCourses_OverDue
+        DEFAULT (0) FOR OverDue
+-- Also notice above that I have a slightly different
+-- syntax for the default constraint:
+--  DEFAULT (value) FOR ColumnName
+-- Lastly, not that the new constraint will only apply for
+-- new rows of data for my DEFAULT constraint.
+/*
+-- Testing with inserting some data
+INSERT INTO StudentCourses(StudentID, CourseNumber, [Year], Term, [Status])
+VALUES (2015, 'DMIT-1508', 2020, 'SEP', 'E')
+SELECT * FROM StudentCourses
+SELECT * FROM Students
+*/
+
+
+-- If you mistakenly added a column to a table, like this:
+ALTER TABLE Students -- Oops
+    ADD     FinalGrade  int     NULL
+GO
+-- You can remove or drop a column like this
+ALTER TABLE Students -- Oops
+    DROP COLUMN    FinalGrade
+GO
+
+
