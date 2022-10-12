@@ -145,4 +145,8 @@ CREATE TABLE StudentCourses
         -- Composite Primary Key Constraint
 )
 
-GO
+GO -- End of CREATE TABLE statements
+-- Run all the batches above, then run the script that inserts test data into your database
+
+
+
