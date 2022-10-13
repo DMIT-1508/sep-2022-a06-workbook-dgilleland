@@ -267,3 +267,16 @@ ALTER TABLE Students
 
 GO -- end the batch of statements that alter the database
 
+/* CREATE INDEX */
+
+-- Indexes improve the performance of the database when retrieving information.
+-- They do this by providing an additional "lookup" table that is sorted by the indexed column(s).
+
+-- When we create a table with a PRIMARY KEY, then that/those column(s) are given "clustered" indexes.
+-- In other words, the data in the database will (by default) be "sorted by" the Primary Key column(s).
+
+-- We can add additional columns as indexes for quick lookup, but those have to be as "Non-Clustered" indexes.
+
+CREATE NONCLUSTERED INDEX IX_Students_Surname
+    ON Students(Surname) -- lookup by last name
+    
