@@ -279,4 +279,16 @@ GO -- end the batch of statements that alter the database
 
 CREATE NONCLUSTERED INDEX IX_Students_Surname
     ON Students(Surname) -- lookup by last name
-    
+
+-- What should we index in our tables?
+--   - Foreign Key Columns
+--   - Anything else that will frequently be used as something we either "lookup by" or "sort by"
+CREATE NONCLUSTERED INDEX IX_StudentCourses_StudentID
+    ON StudentCourses(StudentID)
+CREATE NONCLUSTERED INDEX IX_StudentCourses_CourseNumber
+    ON StudentCourses(CourseNumber)
+
+/* INDEX Statements - Practice */
+
+-- A) Add an index for the Name column in the Courses table.
+-- B) Add an index for the Year column in the StudentCourses table.
