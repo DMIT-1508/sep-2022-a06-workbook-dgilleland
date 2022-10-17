@@ -265,6 +265,16 @@ ALTER TABLE Students
         CONSTRAINT DF_Students_EnrolledDate
             DEFAULT (GETDATE())
 
+-- D) Add a column called Status to the Courses table that will identify the
+--    course status. It can be either 'Current', 'Archived', or 'Under Development',
+--    with a default of 'Current'
+ALTER TABLE Courses
+    ADD [Status]        varchar(20) NOT NULL
+        CONSTRAINT CK_Courses_Status
+            CHECK ([Status] IN ('Current', 'Archived', 'Under Development')),
+        CONSTRAINT DF_Courses_Status
+            DEFAULT ('Current') FOR [Status]
+
 GO -- end the batch of statements that alter the database
 
 /* CREATE INDEX */
