@@ -158,7 +158,7 @@ go
 
 /* School158 Data Inserts */
 
-USE [A0X-School]
+USE [A06-School]
 GO
 
 delete from Payment
