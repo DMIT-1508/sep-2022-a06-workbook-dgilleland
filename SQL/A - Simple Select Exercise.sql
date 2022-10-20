@@ -22,7 +22,7 @@ ORDER BY clause - Sort our final results
 SELECT  'Dan', 'Gilleland'
 
 -- Simple Select with expressions
-SELECT  'Dan' + ' ' + 'Gilleland', 18 * 52, '5' + '10'
+SELECT  'Dan' + ' ' + 'Gilleland', 22 * 52, '5' + '10'
 --        textual information      numbers    textual
 
 -- Specify a column name with some hard-code/calculated values
@@ -115,7 +115,7 @@ FROM    Course AS C -- I can have an alias to the table name
 WHERE   C.CourseHours < 96
 
 -- Type with me the following...
-SELECT  ST.LastName, ST.DateHired, ST.DateReleased
+SELECT  ST.LastName, ST.DateHired, ST.DateReleased, ST.LoginID, ST.StaffID
 FROM    Staff AS ST -- The use of the AS keyword in producing table/column aliases is optional
                     -- but it can be a good idea for readability.
 -- You can use the full table name to fully-qualify your column names
@@ -123,6 +123,18 @@ SELECT  Staff.LastName, Staff.FirstName, Staff.DateHired
 FROM    Staff
 WHERE   Staff.DateReleased IS NOT NULL
 -- NOTE: You can't mix the use of a table alias with the full name of the table
+
+-- 6.b  Select all the course names that cost less than $500.
+-- Explore the data:  SELECT * FROM Course
+SELECT  CourseName
+FROM    Course
+WHERE   CourseCost < 500
+
+-- 6.c  Select the course numbers and names for courses between $475 and $700
+SELECT  C.CourseId AS 'CourseNumber',
+        C.CourseName
+FROM    Course AS C
+WHERE   CourseCost BETWEEN 475 AND 700
 
 -- 7.   Select the studentID's, CourseID and mark where the Mark is between 70 and 80
 SELECT  StudentID, CourseId, Mark
