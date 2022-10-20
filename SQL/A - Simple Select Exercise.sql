@@ -1,8 +1,12 @@
 --SIMPLE SELECT EXERCISE 1
 
-USE [A0X-School]
+SELECT DB_NAME()
+
+USE [A06-School]
 GO
 
+SELECT DB_NAME()
+GO
 /* SELECT Statement in SQL
 
 SELECT clause   - (Required) Identify the columns/data we want to retrieve
