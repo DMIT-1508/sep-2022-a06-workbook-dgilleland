@@ -4,7 +4,8 @@
 -- All aggregates are done using built-in functions in the database
 Use [A06-School]
 GO
-
+SELECT DB_NAME()
+GO
 --1.	Select the average Mark from all the Marks in the registration table
 -- SELECT * FROM Registration - view raw data
 SELECT  AVG(Mark) AS 'Average Mark'
@@ -44,6 +45,7 @@ FROM    Staff
 
 --4.	Select how many students have taken (have a grade for) DMIT152
 SELECT  COUNT(Mark) AS 'Student Count for DMIT152'
+--        , COUNT(StudentID) AS 'Students Enrolled'
 FROM    Registration
 WHERE   CourseId = 'DMIT152'
 
