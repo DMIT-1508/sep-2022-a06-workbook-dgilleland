@@ -25,7 +25,12 @@ ORDER BY 'Average Mark' DESC -- You can use the Column Name for sorting
 
 --3. How many payments where made for each payment type. Display the PaymentTypeDescription and the count.
  -- TODO: Student Answer Here... 
-
+SELECT  PT.PaymentTypeDescription,
+        COUNT(P.PaymentTypeID) AS 'Count'
+FROM    Payment AS P
+    INNER JOIN PaymentType AS PT
+        ON  P.PaymentTypeID = PT.PaymentTypeID
+GROUP BY PT.PaymentTypeDescription
 
 --4. Select the average Mark for each student. Display the Student Name and their average mark. Use table aliases in your FROM & JOIN clause.
 SELECT  S.FirstName  + ' ' + S.LastName AS 'Student Name',
