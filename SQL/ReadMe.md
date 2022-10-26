@@ -95,6 +95,9 @@ This document introduces the using the `GROUP BY` clause with aggregate function
 
 ## [`G - Outer Joins.sql`](./G%20-%20Outer%20Joins.sql)
 
+Review the article [SQL OUTER JOIN overview](https://www.sqlshack.com/sql-outer-join-overview-and-examples/) and examples at SQLShack.
+
+
 ----
 
 ## [`H - Subqueries.sql`](./H%20-%20Subqueries.sql)
