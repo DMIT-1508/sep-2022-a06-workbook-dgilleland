@@ -94,13 +94,19 @@ Review the articles [SQL Convert Date functions and formats](https://www.sqlshac
 
 ## [`F - Inner Joins with Aggregates.sql`](./F%20-%20Inner%20Joins%20with%20Aggregates.sql)
 
+Review these articles at SQLShack
+
 - [Learn SQL: INNER JOIN vs LEFT JOIN](https://www.sqlshack.com/learn-sql-inner-join-vs-left-join/)
+- [A step-by-step walkthrough of SQL Inner Join](https://www.sqlshack.com/a-step-by-step-walkthrough-of-sql-inner-join/)
 
 ----
 
 ## [`G - Outer Joins.sql`](./G%20-%20Outer%20Joins.sql)
 
-Review the article [SQL OUTER JOIN overview and examples](https://www.sqlshack.com/sql-outer-join-overview-and-examples/) at SQLShack.
+Review these articles at SQLShack
+
+- [SQL OUTER JOIN overview and examples](https://www.sqlshack.com/sql-outer-join-overview-and-examples/).
+- [SQL multiple joins for beginners with examples](https://www.sqlshack.com/sql-multiple-joins-for-beginners-with-examples/)
 
 
 ----
