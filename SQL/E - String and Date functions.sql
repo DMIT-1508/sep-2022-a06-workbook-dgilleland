@@ -100,6 +100,8 @@ Millisecond     ms               0             999
 	SELECT DATENAME(MONTH, GETDATE()) AS 'Database Server- Current Month'
   -- Abbreviate the month name to 3 characters.
   -- TODO: Student Answer Here
+	SELECT LEFT(DATENAME(MONTH, GETDATE()), 3) AS 'Database Server- Current Month'
+
 
 	-- DATEPART - Similar to above
 	SELECT DATEPART(WEEKDAY, GETDATE()) AS 'Day of the week',
