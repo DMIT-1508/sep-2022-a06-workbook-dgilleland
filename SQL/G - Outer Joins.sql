@@ -1,4 +1,4 @@
---Outer Joins Exercise
+-- G - Outer Joins Exercise
 USE [A06-School]
 GO
 

@@ -1,5 +1,7 @@
 /* Answers to Practice SQL Query Questions
  *************************************************/
+USE [A06-School]
+GO
 
 /* ===============================
    |  A - Simple Select          |
@@ -309,18 +311,26 @@ GROUP BY C.CourseId, C.CourseName
 
 --7. How many courses have each of the staff taught? Display the full name and the count.
 -- TODO: Student Answer Here...
+-- The following might seem like it would work, but we're actually
+-- counting each student in each course taught by staff members.
 SELECT  FirstName + ' ' + LastName,
         COUNT(R.CourseId) AS 'CourseCount'
 FROM    Staff AS S
     LEFT OUTER JOIN Registration AS R ON S.StaffID = R.StaffID
 GROUP BY FirstName, LastName
 
---   Another way of interpreting the question is to think of the number of "kinds" of courses the staff has taught
+-- A better way of interpreting the question is to think of the number of "kinds" of courses the staff has taught
+-- Adding in the DISTINCT keyword on the COUNT aggregate gives us a better result.
 SELECT  FirstName + ' ' + LastName,
        COUNT(DISTINCT CourseId) AS 'CourseCount'
 FROM    Staff AS S
    LEFT OUTER JOIN Registration AS R ON S.StaffID = R.StaffID
 GROUP BY FirstName, LastName
+
+-- We can see a quick check using the following and doing a manual count of the courses taught by staff
+SELECT  DISTINCT StaffID, CourseId
+FROM    Registration
+ORDER BY StaffID
 
 --8. How many second-year courses have the staff taught? Include all the staff and their job position.
 --   A second-year course is one where the number portion of the course id starts with a '2'.
