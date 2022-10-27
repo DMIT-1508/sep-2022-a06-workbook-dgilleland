@@ -40,6 +40,7 @@ SELECT FirstName + ' ' + LastName AS 'Staff'
 FROM   Staff
 WHERE  StaffID IN -- I used IN because the subquery returns many rows
     (SELECT DISTINCT StaffID FROM Registration)
+ -- (4, 5, 6)
 
 -- The above can also be done as an INNER JOIN...
 SELECT DISTINCT FirstName + ' ' + LastName AS 'Staff'
@@ -59,6 +60,7 @@ SELECT FirstName + ' ' + LastName AS 'Staff'
 FROM   Staff
 WHERE  StaffID NOT IN -- I used IN because the subquery returns many rows
     (SELECT DISTINCT StaffID FROM Registration)
+ -- (4, 5, 6)
 
 -- To do the above questions with a JOIN requires that we use an OUTER JOIN...
 SELECT FirstName + ' ' + LastName AS 'Staff'
@@ -67,7 +69,8 @@ FROM   Staff
         ON Staff.StaffID = Registration.StaffID
 WHERE Registration.StaffID IS NULL
 
---6. Select the Payment TypeID(s) that have the highest number of Payments made.
+-- 6. Select the Payment TypeID(s) that have the highest number of Payments made.
+--    (Hint: This type of problem must use a subquery to get the solution)
 -- Explore the counts of payment types, before we try the subquery
 SELECT  PaymentTypeID, COUNT(PaymentTypeID) AS 'How many times'
 FROM    Payment
