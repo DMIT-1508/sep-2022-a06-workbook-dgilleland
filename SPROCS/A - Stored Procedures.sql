@@ -23,10 +23,8 @@ GO
  * Introduction */
 
 
-IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_TYPE = N'PROCEDURE' AND ROUTINE_NAME = 'GetName')
-    DROP PROCEDURE GetName
 GO
-CREATE PROCEDURE GetName
+CREATE OR ALTER PROCEDURE GetName
     -- Parameters here
 AS
     -- Body of procedure here
@@ -45,18 +43,16 @@ DECLARE @Cost money
 -- Set a value for the variable using a value from the database
 -- Note that the whole SELECT statement is in parenthesis
 SET @Cost = (SELECT CourseCost FROM Course WHERE CourseId = 'DMIT101')
-PRINT @Cost
+SELECT @Cost
 
 -- Understanding BEGIN/END blocks
 --  A BEGIN/END block basically acts like a pair of curly braces in C#.
 --  It represents a single block of code, that is, a single set of instructions.
 --  These are helpful especially with the IF/ELSE flow-control statements.
 --  Consider the following example.
-IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_TYPE = N'PROCEDURE' AND ROUTINE_NAME = 'GuessRows')
-    DROP PROCEDURE GuessRows
 GO
 -- 
-CREATE PROCEDURE GuessRows
+CREATE OR ALTER PROCEDURE GuessRows
     -- This is the parameter list. These variables don't use the DECLARE keyword
     @clubRows   int 
 AS
