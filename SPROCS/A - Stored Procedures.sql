@@ -80,10 +80,8 @@ EXEC GuessRows 5 -- Call the GuessRows procedure that's in the database.
  * Sample Problems */
 
 --1. Create a stored procedure called "HonorCourses" to select all the course names that have averages > 80%.
-IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_TYPE = N'PROCEDURE' AND ROUTINE_NAME = 'HonorCourses')
-    DROP PROCEDURE HonorCourses
 GO
-CREATE PROCEDURE HonorCourses
+CREATE OR ALTER PROCEDURE HonorCourses
     -- Parameters here
 AS
     -- Body of procedure here
@@ -128,7 +126,7 @@ RETURN
 GO
 
 --3.B. Your instructor is back, and recommends that the previous stored procedure use a parameter for the semester, making it more "re-usable"
-ALTER PROCEDURE HonorCoursesOneTerm
+CREATE OR ALTER PROCEDURE HonorCoursesOneTerm
     @Semester   char(5) -- @ preceeds the name of the parameter
 AS
     SELECT C.CourseName
