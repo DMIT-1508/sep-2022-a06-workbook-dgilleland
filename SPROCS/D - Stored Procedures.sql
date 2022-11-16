@@ -220,6 +220,11 @@ AS
 RETURN
 GO
 
+-- To test my sproc, I'll look for a student that has some money due
+-- SELECT * FROM Student WHERE BalanceOwing > 0
+-- Everybody has paid their tuition, so let's just pick somebody who wants to give money to the school
+EXEC PayTuition 500, 200011730, 'CASH'
+EXEC PayTuition 500, 200011730, 'Bitcoin'
 
 
 -- 4) Create a stored procedure called OverActiveMembers that takes a single number: ClubCount. This procedure should return the names of all members that are active in as many or more clubs than the supplied club count.
