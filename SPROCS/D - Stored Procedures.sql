@@ -179,6 +179,13 @@ EXEC RemoveClubMembership 'NASA1'
 EXEC RemoveClubMembership 'CSS'
 EXEC RemoveClubMembership 'CSS' -- The second time this is run, there will be no members to remove
 
+-- 3.5) Create a stored procedure called PayTuition that processes a payment for a student's account. The procedure will be given an amount for the payment, the ID of the student as well as the name of the means of payment being used. Validate all the input. Ensure that no overpayments are being made.
+
+GO
+
+GO
+
+
 
 -- 4) Create a stored procedure called OverActiveMembers that takes a single number: ClubCount. This procedure should return the names of all members that are active in as many or more clubs than the supplied club count.
 --    (p.s. - You might want to make sure to add more members to more clubs, seeing as tests for the last question might remove a lot of club members....)
