@@ -180,9 +180,27 @@ EXEC RemoveClubMembership 'CSS'
 EXEC RemoveClubMembership 'CSS' -- The second time this is run, there will be no members to remove
 
 -- 3.5) Create a stored procedure called PayTuition that processes a payment for a student's account. The procedure will be given an amount for the payment, the ID of the student as well as the name of the means of payment being used. Validate all the input. Ensure that no overpayments are being made.
-
+--     A) What's being sent into the sproc
+--          @Amount      
+--          @ID          
+--          @PaymentName
+--          (check for NULL values)
+--     B) What is returned by the sproc
+--          @@IDENTITY from inserting into the table
+--     C) What table(s) are we working with?
+--          Payment : Insert
+--                    - Required information: StudentID, PaymentTypeID, Amount
+--                    - The PK column (PaymentID) is an IDENTITY column
+--                    - The PaymentDate column has a default of GETDATE()
 GO
-
+CREATE OR ALTER PROCEDURE PayTuition
+    -- Parameters here
+    @Amount         ,
+    @ID             ,
+    @PaymentName    
+AS
+    -- Body of stored procedure
+RETURN
 GO
 
 
