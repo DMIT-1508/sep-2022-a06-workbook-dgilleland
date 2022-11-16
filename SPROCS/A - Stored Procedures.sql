@@ -3,12 +3,17 @@
 
 USE [A06-School]
 GO
-
+SELECT DB_NAME()
+GO
 /* *******************************************
   Each Stored Procedure has to be the first statement in a batch,
     so place a GO statement in-between each question to execute 
     the previous batch (question) and start another.
 
+<<<<<<< HEAD
+=======
+GO
+>>>>>>> b5a0b0233bc490d6ca3dd9447282da8dd9a01b1f
 CREATE OR ALTER PROCEDURE SprocName
     -- Parameters here
 AS
@@ -21,10 +26,8 @@ GO
  * Introduction */
 
 
-IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_TYPE = N'PROCEDURE' AND ROUTINE_NAME = 'GetName')
-    DROP PROCEDURE GetName
 GO
-CREATE PROCEDURE GetName
+CREATE OR ALTER PROCEDURE GetName
     -- Parameters here
 AS
     -- Body of procedure here
@@ -43,18 +46,16 @@ DECLARE @Cost money
 -- Set a value for the variable using a value from the database
 -- Note that the whole SELECT statement is in parenthesis
 SET @Cost = (SELECT CourseCost FROM Course WHERE CourseId = 'DMIT101')
-PRINT @Cost
+SELECT @Cost
 
 -- Understanding BEGIN/END blocks
 --  A BEGIN/END block basically acts like a pair of curly braces in C#.
 --  It represents a single block of code, that is, a single set of instructions.
 --  These are helpful especially with the IF/ELSE flow-control statements.
 --  Consider the following example.
-IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_TYPE = N'PROCEDURE' AND ROUTINE_NAME = 'GuessRows')
-    DROP PROCEDURE GuessRows
 GO
 -- 
-CREATE PROCEDURE GuessRows
+CREATE OR ALTER PROCEDURE GuessRows
     -- This is the parameter list. These variables don't use the DECLARE keyword
     @clubRows   int 
 AS
@@ -82,10 +83,8 @@ EXEC GuessRows 5 -- Call the GuessRows procedure that's in the database.
  * Sample Problems */
 
 --1. Create a stored procedure called "HonorCourses" to select all the course names that have averages > 80%.
-IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_TYPE = N'PROCEDURE' AND ROUTINE_NAME = 'HonorCourses')
-    DROP PROCEDURE HonorCourses
 GO
-CREATE PROCEDURE HonorCourses
+CREATE OR ALTER PROCEDURE HonorCourses
     -- Parameters here
 AS
     -- Body of procedure here
@@ -130,7 +129,7 @@ RETURN
 GO
 
 --3.B. Your instructor is back, and recommends that the previous stored procedure use a parameter for the semester, making it more "re-usable"
-ALTER PROCEDURE HonorCoursesOneTerm
+CREATE OR ALTER PROCEDURE HonorCoursesOneTerm
     @Semester   char(5) -- @ preceeds the name of the parameter
 AS
     SELECT C.CourseName

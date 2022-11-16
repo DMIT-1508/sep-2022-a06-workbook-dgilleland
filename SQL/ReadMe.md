@@ -125,7 +125,7 @@ Review these articles at SQLShack
 
 ## Additional Resources
 
-- [SQL Queries in SQL Server � a beginner�s guide](https://www.sqlshack.com/sql-queries-in-sql-server-a-beginners-guide/)
+- [SQL Queries in SQL Server - a beginner's guide](https://www.sqlshack.com/sql-queries-in-sql-server-a-beginners-guide/)
 
 ----
 
