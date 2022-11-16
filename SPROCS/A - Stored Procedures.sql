@@ -9,10 +9,7 @@ GO
     so place a GO statement in-between each question to execute 
     the previous batch (question) and start another.
 
-IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_TYPE = N'PROCEDURE' AND ROUTINE_NAME = 'SprocName')
-    DROP PROCEDURE SprocName
-GO
-CREATE PROCEDURE SprocName
+CREATE OR ALTER PROCEDURE SprocName
     -- Parameters here
 AS
     -- Body of procedure here
