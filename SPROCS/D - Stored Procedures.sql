@@ -195,11 +195,12 @@ EXEC RemoveClubMembership 'CSS' -- The second time this is run, there will be no
 GO
 CREATE OR ALTER PROCEDURE PayTuition
     -- Parameters here
-    @Amount         ,
-    @ID             ,
-    @PaymentName    
+    @Amount         decimal,    -- the data type should match Payment.Amount
+    @ID             int,        -- the data type should match Payment.StudentID
+    @PaymentName    varchar(40) -- the data type should match PaymentType.PaymentTypeDescription
 AS
     -- Body of stored procedure
+    
 RETURN
 GO
 
