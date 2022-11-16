@@ -200,7 +200,23 @@ CREATE OR ALTER PROCEDURE PayTuition
     @PaymentName    varchar(40) -- the data type should match PaymentType.PaymentTypeDescription
 AS
     -- Body of stored procedure
-    
+    IF @Amount IS NULL OR @ID IS NULL or @PaymentName IS NULL
+    BEGIN
+        RAISERROR('All parameters are required; null values are rejected', 16, 1)
+    END
+    ELSE
+    BEGIN
+        INSERT INTO Payment(StudentID, PaymentTypeID, Amount)
+        VALUES (@ID, (SELECT PaymentTypeID FROM PaymentType WHERE PaymentTypeDescription = @PaymentName), @Amount)
+        IF @@ERROR <> 0
+        BEGIN
+            RAISERROR('Unable to pay tuition - insert statement failed', 16, 1)
+        END
+        ELSE
+        BEGIN
+            SELECT @@IDENTITY AS 'NewPaymentID' -- The identity value from the insert
+        END
+    END
 RETURN
 GO
 
