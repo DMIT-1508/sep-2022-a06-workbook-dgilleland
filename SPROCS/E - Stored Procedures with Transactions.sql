@@ -7,7 +7,9 @@
 
 USE [A06-School]
 GO
-
+-- Call the DB_NAME() function to confirm our current context
+SELECT DB_NAME()
+GO
 /*
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_TYPE = N'PROCEDURE' AND ROUTINE_NAME = 'SprocName')
     DROP PROCEDURE SprocName
